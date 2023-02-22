@@ -389,7 +389,6 @@ class Esphome extends utils.Adapter {
 									await this.stateSetCreate(`${this.deviceInfo[host].deviceName}.${entity.type}.${entity.id}.stop`, `Stop`, false, ``, true);
 									break;
 
-
 								case 'Fan':
 									await this.handleRegularState(`${host}`, entity, state, false );
 									break;
@@ -408,6 +407,10 @@ class Esphome extends utils.Adapter {
 
 								case 'Switch':
 									await this.handleRegularState(`${host}`, entity, state, true );
+									break;
+									
+								case 'Number':
+									await this.handleRegularState(`${host}`, entity, state );
 									break;
 
 								default:
