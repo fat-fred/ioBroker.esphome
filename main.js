@@ -410,8 +410,8 @@ class Esphome extends utils.Adapter {
 									break;
 									
 								case 'Number':
-									await this.handleRegularState(`${host}`, entity, state, false );
-									await this.stateSetCreate(`${this.deviceInfo[host].deviceName}.${entity.type}.${entity.id}.command`, `Command`, false, ``, true);
+									await this.handleRegularState(`${host}`, entity, state, true );
+									//await this.stateSetCreate(`${this.deviceInfo[host].deviceName}.${entity.type}.${entity.id}.command`, `Command`, false, ``, true);
 									break;
 
 								default:
@@ -986,13 +986,18 @@ class Esphome extends utils.Adapter {
 
 				// Handle Switch State
 				if (this.deviceInfo[deviceIP][device[4]].type === `Switch`
-					|| this.deviceInfo[deviceIP][device[4]].type === `Fan`) {
+				    	|| this.deviceInfo[deviceIP][device[4]].type === `Fan`) {
 					await client[deviceIP].connection.switchCommandService({key: device[4], state: state.val});
 
 					// Handle Climate State
 				} else if (this.deviceInfo[deviceIP][device[4]].type === `Climate`) {
 					this.deviceInfo[deviceIP][device[4]].states[device[5]] = state.val;
 					await client[deviceIP].connection.climateCommandService(this.deviceInfo[deviceIP][device[4]].states);
+
+					// Handle Number State
+				} else if (this.deviceInfo[deviceIP][device[4]].type === `Number`) {
+					this.deviceInfo[deviceIP][device[4]].states[device[5]] = state.val;
+					await client[deviceIP].connection.numberCommandService(this.deviceInfo[deviceIP][device[4]].states);
 
 					// Handle Cover Position
 				} else if (device[5] === `position`) {
