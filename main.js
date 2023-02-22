@@ -737,7 +737,8 @@ class Esphome extends utils.Adapter {
 				// console.log(`An attribute has changed : ${state}`);
 				await this.extendObjectAsync(objName, {
 					type: 'state',
-					common
+					common,
+					native: {}
 				});
 
 			} else {
