@@ -12,7 +12,7 @@ const { Discovery } = require('esphome-native-api');
 const kill = require('tree-kill');
 let discovery;
 const stateAttr = require(__dirname + '/lib/stateAttr.js'); // Load attribute library
-const disableSentry = false; // Ensure to set to true during development!
+const disableSentry = true; // Ensure to set to true during development!
 const warnMessages = {}; // Store warn messages to avoid multiple sending to sentry
 const client = {};
 let reconnectTimer, reconnectInterval, apiPass, autodiscovery, dashboardProcess, createConfigStates;
