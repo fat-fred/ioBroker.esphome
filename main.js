@@ -410,7 +410,8 @@ class Esphome extends utils.Adapter {
 									break;
 									
 								case 'Number':
-									await this.handleRegularState(`${host}`, entity, state, true );
+									await this.handleRegularState(`${host}`, entity, state, false );
+									await this.handleRegularState(`${host}`, entity, command, true );
 									break;
 
 								default:
