@@ -410,7 +410,7 @@ class Esphome extends utils.Adapter {
 									break;
 									
 								case 'Number':
-									await this.handleRegularState(`${host}`, entity, state, true );
+									await this.handleStateArrays(`${host}`, entity, state, false );
 									//await this.stateSetCreate(`${this.deviceInfo[host].deviceName}.${entity.type}.${entity.id}.command`, `Command`, false, ``, true);
 									break;
 
