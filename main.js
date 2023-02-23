@@ -410,7 +410,7 @@ class Esphome extends utils.Adapter {
 									break;
 									
 								case 'Number':
-									await this.handleStateArrays(`${host}`, entity, state, false );
+									await this.handleRegularState(`${host}`, entity, state, true );
 									//await this.stateSetCreate(`${this.deviceInfo[host].deviceName}.${entity.type}.${entity.id}.command`, `Command`, false, ``, true);
 									break;
 
@@ -997,7 +997,7 @@ class Esphome extends utils.Adapter {
 					// Handle Number State
 				} else if (this.deviceInfo[deviceIP][device[4]].type === `Number`) {
 					this.deviceInfo[deviceIP][device[4]].states[device[5]] = state.val;
-					await client[deviceIP].connection.numberCommandService(this.deviceInfo[deviceIP][device[4]].states);
+					await client[deviceIP].connection.numberCommandService({key: device[4], state: state.val});
 
 					// Handle Cover Position
 				} else if (device[5] === `position`) {
